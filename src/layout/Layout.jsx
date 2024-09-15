@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-// import Header from "../components/Header";
+import Header from "../components/Header";
 
 const Layout = () => {
   return (
@@ -11,7 +11,7 @@ const Layout = () => {
       }}
       className="flex w-full flex-col min-h-screen"
     >
-      {/* <Header /> */}
+      <Header />
       <main className=" p-7">
         <Outlet />
       </main>
