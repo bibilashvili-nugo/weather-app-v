@@ -3,6 +3,7 @@ import { AiOutlineCalendar } from "react-icons/ai";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
+
 const API_KEY = "qfqb4mH8tbAcAUEgSNeNvVk6g4z1Rj0G";
 const API_URL = `https://api.tomorrow.io/v4/weather/forecast?location=batumi&apikey=${API_KEY}&timesteps=daily&startTime=${
   new Date().toISOString().split("T")[0]
@@ -97,7 +98,8 @@ const RightSide = () => {
   }
 
   return (
-    <div className="p-4 relative">
+    <>
+ <div className="p-4 relative">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-2xl font-semibold text-[#000000]">
           Weather Forecast
@@ -157,18 +159,23 @@ const RightSide = () => {
                 <span className="font-semibold">
                   {Math.round(day.values?.temperatureMax) ?? "N/A"}°C
                 </span>
+                <img src="/sun.png" />
               </p>
               <span className="text-sm">|</span>
               <p className="text-sm">
                 <span className="font-semibold">
                   {Math.round(day.values?.temperatureMin) ?? "N/A"}°C
                 </span>
+                <img src="/moon.png" />
               </p>
             </div>
           </div>
         ))}
       </div>
     </div>
+    
+    </>
+   
   );
 };
 
