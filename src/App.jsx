@@ -42,7 +42,14 @@ const App = () => {
         >
           <Route
             index
-            element={<Home weather={weather} error={error} loading={loading} />}
+            element={
+              <Home
+                weather={weather}
+                setQuery={setQuery}
+                error={error}
+                loading={loading}
+              />
+            }
           />
         </Route>
       </Routes>
