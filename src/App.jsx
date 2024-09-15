@@ -8,29 +8,38 @@ const App = () => {
   const [weather, setWeather] = useState({});
   const [query, setQuery] = useState({ q: "tbilisi" });
   const [error, setError] = useState(null);
+  const [units, setUnits] = useState("matric");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
-      setLoading(true);
-      try {
-        const data = await getFormattedWeatherData(query);
+      await getFormattedWeatherData({ ...query, units }).then((data) => {
         setWeather(data);
-        console.log(data);
-      } catch (error) {
-        setError("Error fetching weather data");
-      } finally {
-        setLoading(false);
-      }
+      });
+      // setLoading(true);
+      // try {
+      //   const data = await getFormattedWeatherData(query);
+      //   setWeather(data);
+      //   console.log(data);
+      // } catch (error) {
+      //   setError("Error fetching weather data");
+      // } finally {
+      //   setLoading(false);
+      // }
     };
 
     fetchWeatherData();
-  }, [query]);
+  }, [query, units]);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <Layout setQuery={setQuery} units={units} setUnits={setUnits} />
+          }
+        >
           <Route
             index
             element={<Home weather={weather} error={error} loading={loading} />}

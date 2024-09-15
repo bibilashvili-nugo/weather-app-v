@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 
-const Layout = () => {
+const Layout = ({ setQuery, units, setUnits }) => {
   return (
     <div
       style={{
@@ -11,7 +11,7 @@ const Layout = () => {
       }}
       className="flex w-full flex-col min-h-screen"
     >
-      <Header />
+      <Header setQuery={setQuery} units={units} setUnits={setUnits} />
       <main className=" p-7">
         <Outlet />
       </main>
