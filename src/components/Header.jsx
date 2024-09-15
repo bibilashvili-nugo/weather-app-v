@@ -1,7 +1,7 @@
 import { MdSearch } from "react-icons/md";
-import LanguageSelector from "../language_selector/Language_selector";
 
 import SwitcherFtoT from "./SwitcherFtoT";
+import LanguageSelector from "../language_selector/Language_selector";
 
 const Header = () => {
   return (
