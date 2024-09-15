@@ -22,6 +22,10 @@ const getWeatherData = async (infoType, searchParams) => {
 const iconUrlFromCode = (icon) =>
   `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
+// Handle temperature conversion based on units
+const kelvinToCelsius = (kelvin) => kelvin - 273.15;
+const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
+
 const formatToLocalTime = (
   secs,
   offsetInSeconds,
@@ -34,7 +38,7 @@ const formatToLocalTime = (
   return dateTime.isValid ? dateTime.toFormat(format) : "Invalid DateTime";
 };
 
-const formatCurrent = (data) => {
+const formatCurrent = (data, units) => {
   const {
     main: { temp, feels_like, humidity, temp_min, temp_max },
     name,
@@ -48,13 +52,36 @@ const formatCurrent = (data) => {
   const { main: details, icon } = weather[0];
   const formattedLocalTime = formatToLocalTime(dt, timezone);
 
+  // Convert temperature to the correct unit
+  let temperature;
+  let feelsLike;
+  let minTemp;
+  let maxTemp;
+
+  if (units === "metric") {
+    temperature = kelvinToCelsius(temp);
+    feelsLike = kelvinToCelsius(feels_like);
+    minTemp = kelvinToCelsius(temp_min);
+    maxTemp = kelvinToCelsius(temp_max);
+  } else if (units === "imperial") {
+    temperature = celsiusToFahrenheit(kelvinToCelsius(temp));
+    feelsLike = celsiusToFahrenheit(kelvinToCelsius(feels_like));
+    minTemp = celsiusToFahrenheit(kelvinToCelsius(temp_min));
+    maxTemp = celsiusToFahrenheit(kelvinToCelsius(temp_max));
+  } else {
+    temperature = temp; // Assuming default Kelvin
+    feelsLike = feels_like;
+    minTemp = temp_min;
+    maxTemp = temp_max;
+  }
+
   return {
-    temp,
-    feels_like,
+    temp: temperature,
+    feels_like: feelsLike,
     name,
     humidity,
-    temp_min,
-    temp_max,
+    temp_min: minTemp,
+    temp_max: maxTemp,
     details,
     country,
     formattedLocalTime,
@@ -109,16 +136,17 @@ const formatForecastWeather = (currentTime, offset, forecastData) => {
 
 const getFormattedWeatherData = async (searchParams) => {
   try {
+    const { units } = searchParams;
     const formattedCurrentWeather = await getWeatherData(
       "weather",
       searchParams
-    ).then(formatCurrent);
+    ).then((data) => formatCurrent(data, units));
     const { lat, lon, timezone } = formattedCurrentWeather;
 
     const formattedForecastWeather = await getWeatherData("forecast", {
       lat,
       lon,
-      units: searchParams.units,
+      units,
     }).then((forecastData) =>
       formatForecastWeather(formattedCurrentWeather.dt, timezone, forecastData)
     );

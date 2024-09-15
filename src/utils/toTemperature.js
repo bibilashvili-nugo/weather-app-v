@@ -1,1 +1,1 @@
-export const kelvinToCelsius = (kelvin) => kelvin - 273.15;
+export const kelvinToCelsius = (celsius) => (celsius * 9) / 5 + 32;

@@ -28,7 +28,7 @@ const Header = ({ setQuery, units, setUnits }) => {
           />
           <div className="flex gap-[10px]">
             <LanguageSelector />
-            <SwitcherFtoT />
+            <SwitcherFtoT units={units} setUnits={setUnits} />
             <img src="/language.svg" alt="" />
           </div>
         </div>

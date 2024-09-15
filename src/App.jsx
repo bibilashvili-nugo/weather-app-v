@@ -7,8 +7,8 @@ import getFormattedWeatherData from "./services/WeatherService";
 const App = () => {
   const [weather, setWeather] = useState({});
   const [query, setQuery] = useState({ q: "tbilisi" });
-  const [error, setError] = useState(null);
-  const [units, setUnits] = useState("matric");
+
+  const [units, setUnits] = useState("metric");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,16 +16,6 @@ const App = () => {
       await getFormattedWeatherData({ ...query, units }).then((data) => {
         setWeather(data);
       });
-      // setLoading(true);
-      // try {
-      //   const data = await getFormattedWeatherData(query);
-      //   setWeather(data);
-      //   console.log(data);
-      // } catch (error) {
-      //   setError("Error fetching weather data");
-      // } finally {
-      //   setLoading(false);
-      // }
     };
 
     fetchWeatherData();
@@ -37,18 +27,18 @@ const App = () => {
         <Route
           path="/"
           element={
-            <Layout setQuery={setQuery} units={units} setUnits={setUnits} />
+            <Layout
+              setQuery={setQuery}
+              weather={weather}
+              units={units}
+              setUnits={setUnits}
+            />
           }
         >
           <Route
             index
             element={
-              <Home
-                weather={weather}
-                setQuery={setQuery}
-                error={error}
-                loading={loading}
-              />
+              <Home weather={weather} setQuery={setQuery} loading={loading} />
             }
           />
         </Route>
