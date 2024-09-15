@@ -101,7 +101,7 @@ const formatForecastWeather = (currentTime, offset, forecastData) => {
     }))
     .filter((entry) => entry.title !== "Invalid DateTime");
 
-  const hourlyData = hourly.slice(0, 8);
+  const hourlyData = hourly.slice(0, 14);
   const dailyData = aggregateDailyData(forecastData.list);
 
   return { hourlyData, dailyData };

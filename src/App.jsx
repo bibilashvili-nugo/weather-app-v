@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Layout from "./layout/Layout";
 import { useEffect, useState } from "react";
 import getFormattedWeatherData from "./services/WeatherService";
-import i18n from "i18next";
+
 const App = () => {
   const [weather, setWeather] = useState({});
   const [query, setQuery] = useState({ q: "tbilisi" });
@@ -16,6 +16,7 @@ const App = () => {
       try {
         const data = await getFormattedWeatherData(query);
         setWeather(data);
+        console.log(data);
       } catch (error) {
         setError("Error fetching weather data");
       } finally {

@@ -1,13 +1,11 @@
+import { weatherPropTypes } from "../propTypesDefinitions";
 import ContentContainerShape from "./ContentContainerShape";
-// import useWeather from "../customHooks/useWeather";
 
-export default function Humidity() {
-  // const { weather } = useWeather();
+export default function Humidity({ weather }) {
   const humidityData = {
     label: { label: "Humidity", text: "24px", font: "400" },
     humidity: {
-      // humidity: weather ? `${weather.main.humidity} %` : "N/A",
-      humidity: "lll",
+      humidity: weather ? `${weather.humidity} %` : "N/A",
       text: "55px",
       font: "400",
     },
@@ -21,3 +19,6 @@ export default function Humidity() {
     </div>
   );
 }
+Humidity.propTypes = {
+  weather: weatherPropTypes.isRequired,
+};
