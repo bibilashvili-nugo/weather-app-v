@@ -69,7 +69,7 @@ const formatCurrent = (data, units) => {
     minTemp = celsiusToFahrenheit(kelvinToCelsius(temp_min));
     maxTemp = celsiusToFahrenheit(kelvinToCelsius(temp_max));
   } else {
-    temperature = temp; // Assuming default Kelvin
+    temperature = temp;
     feelsLike = feels_like;
     minTemp = temp_min;
     maxTemp = temp_max;

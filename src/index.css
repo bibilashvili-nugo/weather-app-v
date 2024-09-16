@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @media screen and (max-width: 560px) {
+    min-width: 150%;
+  }
+}
+
 .language-selector {
   display: flex;
   align-items: center;
@@ -124,5 +130,6 @@
   font-size: 1rem;
 }
 
-
-#map { height: 180px; }
+#map {
+  height: 180px;
+}

@@ -22,25 +22,25 @@ function LeftSide({ weather, setQuery }) {
     }
   };
   return (
-    <div className="max-w-[860px] pt-[12px] pb-[30px] px-4 lg:px-8">
-      <h2 className="text-[22px] lg:text-[28px] text-[#FFFFFF] pt-[38px] pb-[27px] font-[510]">
+    <div className=" flex flex-col items-center pt-[12px] pb-[30px] px-4  lg:px-8">
+      <h2 className="text-[22px] self-start lg:text-[28px] text-[#FFFFFF] pt-[38px] pb-[27px] font-[510]">
         {t("Forecast of the day")}
       </h2>
       <CurrentDay weather={weather} />
 
       <h4
         onClick={handleLocationClick}
-        className="underline text-[#FFFFFF] pt-[14px] pb-[30px] text-[14px] lg:text-[16px] font-[400] cursor-pointer"
+        className="underline self-start text-[#FFFFFF] pt-[14px] pb-[30px] text-[14px] lg:text-[16px] font-[400] cursor-pointer"
       >
         {t("current location")}
       </h4>
 
-      <h3 className="text-[20px] lg:text-[24px] text-[#FFFFFF] font-[510] pt-[40px] pb-[20px] lg:pt-[45px] lg:pb-[29px]">
+      <h3 className="text-[20px] self-start lg:text-[24px] text-[#FFFFFF] font-[510] pt-[40px] pb-[20px] lg:pt-[45px] lg:pb-[29px]">
         {t("weather by hours")}
       </h3>
       <TemprichaByHours weather={weather} />
       <div className="w-full justify-between gap-4">
-        <div className="flex">
+        <div className="flex md:flex-row w-full   items-center   flex-col">
           <Humidity weather={weather} />
           <Sensitivity weather={weather} />
         </div>

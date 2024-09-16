@@ -18,7 +18,7 @@ const CurrentDay = ({ weather, units }) => {
 
   const displayTemp =
     units === "metric"
-      ? `${temp.toFixed(1)}°C` // Display in Celsius
+      ? `${temp.toFixed(1)}°C`
       : `${celsiusToFahrenheit(temp).toFixed(1)}°F`;
 
   return (

@@ -20,7 +20,7 @@ const Layout = ({ setQuery, units, weather, setUnits }) => {
       className="flex w-full flex-col min-h-screen"
     >
       <Header setQuery={setQuery} units={units} setUnits={setUnits} />
-      <main className="p-7">
+      <main className="">
         <Outlet />
       </main>
     </div>

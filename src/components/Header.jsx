@@ -2,7 +2,7 @@ import { MdSearch } from "react-icons/md";
 import SwitcherFtoT from "./SwitcherFtoT";
 import LanguageSelector from "../language_selector/Language_selector";
 import { useState } from "react";
-import Map from "./Map"
+import Map from "./Map";
 
 const Header = ({ setQuery, units, setUnits }) => {
   const [city, setCity] = useState("");
@@ -15,11 +15,19 @@ const Header = ({ setQuery, units, setUnits }) => {
   };
 
   const toggleMapVisibility = () => {
-    setMapVisible(!mapVisible); 
+    setMapVisible(!mapVisible);
   };
 
+  const [getLocationFromMap, setGetLocationFromMap] = useState({});
   const handleMapClose = () => {
-    setMapVisible(false); 
+    console.log(getLocationFromMap);
+    const { lat, lng } = getLocationFromMap;
+    console.log(lat, "latt", lng, "lnggg");
+    // setQuery({
+    //   lat,
+    //   lng,
+    // });
+    setMapVisible(false);
   };
 
   return (
@@ -44,17 +52,21 @@ const Header = ({ setQuery, units, setUnits }) => {
               <img
                 src="/language.svg"
                 alt=""
-                onClick={toggleMapVisibility} 
+                onClick={toggleMapVisibility}
                 className="cursor-pointer"
               />
             </div>
           </div>
         </div>
       </header>
-      {mapVisible && <Map onClose={handleMapClose} />} 
+      {mapVisible && (
+        <Map
+          setGetLocationFromMap={setGetLocationFromMap}
+          onClose={handleMapClose}
+        />
+      )}
     </>
   );
 };
 
 export default Header;
-

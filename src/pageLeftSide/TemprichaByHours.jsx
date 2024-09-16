@@ -25,9 +25,8 @@ export default function TemprichaByHours({ weather }) {
     };
   }, []);
 
-  // Function to format the timestamp
   const formatTime = (timestamp) => {
-    const date = new Date(timestamp * 1000); // Convert to milliseconds
+    const date = new Date(timestamp * 1000);
     const hours = date.getUTCHours();
     const minutes = date.getUTCMinutes();
     return `${hours.toString().padStart(2, "0")}:${minutes
@@ -41,7 +40,7 @@ export default function TemprichaByHours({ weather }) {
         backdropFilter: "blur(1.7210965156555176px)",
         overflow: "hidden",
       }}
-      className="container w-[500px] md:w-[460px] xl:w-[755px] bg-[#00000066] mb-[53px] py-[28px] rounded-[14px] p-4"
+      className="container w-[500px] md:w-[600px] xl:w-[755px] bg-[#00000066] mb-[53px] py-[28px] rounded-[14px] p-4"
     >
       <Swiper
         ref={swiperRef}
