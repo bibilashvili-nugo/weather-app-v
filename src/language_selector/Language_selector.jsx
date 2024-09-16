@@ -49,7 +49,7 @@ export default function LanguageSelector() {
   return (
     <div className="flex items-center">
       <motion.div
-        className="relative cursor-pointer w-[55px] h-[30px]"
+        className="relative cursor-pointer border rounded-md border-black w-[45px] h-[30px]"
         key={selectedLang}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { kelvinToCelsius } from "../utils/toTemperature";
 
-const CurrentDay = ({ weather }) => {
+const CurrentDay = ({ weather, units }) => {
   if (!weather) return <div>No weather data available</div>;
 
   const { name, temp, details } = weather;
@@ -11,8 +10,17 @@ const CurrentDay = ({ weather }) => {
     day: "numeric",
     month: "long",
   });
+  // utils/toTemperature.js
+  const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
 
-  console.log(weather, "weather from currday");
+  const kelvinTemperature = temp;
+  console.log(temp, "temp");
+
+  const displayTemp =
+    units === "metric"
+      ? `${temp.toFixed(1)}°C` // Display in Celsius
+      : `${celsiusToFahrenheit(temp).toFixed(1)}°F`;
+
   return (
     <div className="bg-[#00000066] w-[500px] md:w-[600px] xl:w-[755px] text-[#FFFFFF] px-[52px] py-[35px] rounded-[8px]">
       <div>
@@ -29,22 +37,19 @@ const CurrentDay = ({ weather }) => {
             {formattedDate}
           </span>
           <span className="text-[72px] font-[400]">
-            {temp ? `${kelvinToCelsius(temp).toFixed(0)}°` : "loading"}
+            {temp ? displayTemp : "loading"}
           </span>
         </div>
       </div>
     </div>
   );
 };
-
 CurrentDay.propTypes = {
   weather: PropTypes.shape({
     name: PropTypes.string,
-    formattedLocalTime: PropTypes.string,
     temp: PropTypes.number,
-    feels_like: PropTypes.number,
     details: PropTypes.string,
   }),
+  units: PropTypes.oneOf(["metric", "imperial"]).isRequired, // Ensure units is passed correctly
 };
-
 export default CurrentDay;
