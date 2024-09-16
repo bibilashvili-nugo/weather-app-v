@@ -23,9 +23,6 @@ const Layout = ({ setQuery, units, weather, setUnits }) => {
       <main className="p-7">
         <Outlet />
       </main>
-      <footer className="p-7 w-full bg-gray-100">
-        <p>Footer</p>
-      </footer>
     </div>
   );
 };

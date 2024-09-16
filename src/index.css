@@ -123,3 +123,6 @@
 .react-calendar__month-view__days__day {
   font-size: 1rem;
 }
+
+
+#map { height: 180px; }

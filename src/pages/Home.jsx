@@ -7,7 +7,7 @@ const Home = ({ weather, setQuery }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   return (
-    <div className="flex w-full p-4 gap-4 ">
+    <div className="flex flex-col lg:flex-row w-full p-4 gap-4">
       <LeftSide weather={weather} setQuery={setQuery} />
       <RightSide />
     </div>
